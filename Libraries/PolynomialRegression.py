@@ -626,53 +626,6 @@ class AutoPolynomialRegression:
         else:
             print("- Không có dấu hiệu overfitting rõ rệt.")
 
-    # # ===== Bước 8: đánh giá & test =====
-    # def evaluate(self) -> pd.DataFrame:
-    #     """
-    #     Trả về bảng MAE, RMSE, R², Adjusted R² cho train & test.
-    #     """
-    #     if self.best_model_ is None:
-    #         raise Exception("Chưa có mô hình. Gọi select_degree_and_train().")
-
-    #     # Dùng X theo tập feature đang hoạt động (nếu có)
-    #     X_tr_used = self._get_active_X(self.X_train)
-    #     X_te_used = self._get_active_X(self.X_test)
-
-    #     # Train
-    #     yhat_tr = self.best_model_.predict(X_tr_used)
-    #     mae_tr = mean_absolute_error(self.y_train, yhat_tr)
-    #     rmse_tr = self._rmse(self.y_train, yhat_tr)
-    #     r2_tr = r2_score(self.y_train, yhat_tr)
-
-    #     # Số đặc trưng sau Polynomial (không tính intercept)
-    #     poly: PolynomialFeatures = self.best_model_.named_steps["poly"]
-    #     p_no_bias = getattr(poly, "n_output_features_", None)
-    #     if p_no_bias is None:
-    #         # fallback an toàn
-    #         p_no_bias = poly.fit_transform(X_tr_used[:1]).shape[1]
-
-    #     adj_r2_tr = self._adj_r2(r2_tr, n=len(self.y_train), p=p_no_bias)
-
-    #     # Test
-    #     yhat_te = self.best_model_.predict(X_te_used)
-    #     mae_te = mean_absolute_error(self.y_test, yhat_te)
-    #     rmse_te = self._rmse(self.y_test, yhat_te)
-    #     r2_te = r2_score(self.y_test, yhat_te)
-    #     adj_r2_te = self._adj_r2(r2_te, n=len(self.y_test), p=p_no_bias)
-
-    #     report = pd.DataFrame([{
-    #         "degree_chosen": self.chosen_degree_,
-    #         "n_features_raw": self._get_active_X(self.df[self.feature_names].values).shape[1],
-    #         "n_features_poly": p_no_bias,
-    #         "Train_MAE": mae_tr, "Train_RMSE": rmse_tr, "Train_R2": r2_tr, "Train_AdjR2": adj_r2_tr,
-    #         "Test_MAE": mae_te, "Test_RMSE": rmse_te, "Test_R2": r2_te, "Test_AdjR2": adj_r2_te
-    #     }])
-
-    #     print("\n=== Đánh giá mô hình cuối (train/test) ===")
-    #     print(report.round(4))
-    #     self.metrics_ = report
-    #     return report
-
     def plot_residuals(self) -> None:
         """Residual plot & histogram (test) để kiểm tra giả định sai số."""
         if self.best_model_ is None:
