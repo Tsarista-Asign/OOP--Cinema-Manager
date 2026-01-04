@@ -78,9 +78,9 @@ class AutoPolynomialRegression:
         max_scatter_plots: int = 9,
         max_features: Optional[int] = None,
         # ===== NEW (tuỳ chọn, mặc định không đổi hành vi cũ) =====
-        cpu_cores: int = -1,             # n_jobs cho cross_val_score (mặc định -1 như cũ)
-        ram_gb: float = 16.0,            # RAM máy (GB)
-        safety_ratio: float = 0.5,       # chỉ dùng %RAM này
+        cpu_cores: int = -1,                # n_jobs cho cross_val_score (mặc định -1 như cũ)
+        ram_gb: float = 16.0,               # RAM máy (GB)
+        safety_ratio: float = 0.5,          # chỉ dùng %RAM này
         min_feature: Optional[int] = None,  # số feature tối thiểu (None → không kích hoạt bước chọn)
         min_degree: Optional[int] = None,   # degree tối thiểu (None → giữ nguyên từ 1)
     ):
