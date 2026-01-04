@@ -12,6 +12,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from scipy import stats
 import statsmodels.api as sm
+import statsmodels.stats.api as sms
 from typing import Union, Tuple
 
 class LinearRegressionPipeline:
@@ -176,6 +177,7 @@ class LinearRegressionPipeline:
     def fit_multivariate_ols(self, show_summary: bool = True):
         """
         Hồi quy đa biến bằng statsmodels.OLS (chất lượng cao, có p-value, CI, R², Adj R²).
+        - Nếu phát hiện heteroscedasticity, tự động dùng robust SE (HC3).
         """
         X = self.df[self.feature_names]
         y = self.df[self.target_name]
@@ -184,6 +186,13 @@ class LinearRegressionPipeline:
         self.model_sm = sm.OLS(y, Xc)
         self.results_sm = self.model_sm.fit()
         self.fitted_multi = True
+
+        # --- Kiểm tra heteroscedasticity ---
+        _, pval, _, _ = sms.het_breuschpagan(self.results_sm.resid, self.results_sm.model.exog)
+
+        if pval < 0.05:
+            print("⚠️ Phát hiện heteroscedasticity → tự động dùng robust SE (HC3).")
+            self.results_sm = self.model_sm.fit(cov_type="HC3")
 
         if show_summary:
             print(self.results_sm.summary())
@@ -196,6 +205,8 @@ class LinearRegressionPipeline:
                 print(f"Intercept: {val:.6f}")
             else:
                 print(f"Hệ số {name}: {val:.6f}")
+
+        return self.results_sm
 
     def predict_multivariate(self, X_new: Union[np.ndarray, pd.DataFrame, list]) -> Union[np.ndarray, pd.Series]:
         """
