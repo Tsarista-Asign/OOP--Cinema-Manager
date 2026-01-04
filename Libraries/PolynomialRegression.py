@@ -246,10 +246,10 @@ class AutoPolynomialRegression:
         self._feature_rank_df = out.copy()
 
         print("\n=== Nhận định biến (tương quan với y) ===")
-        print(f"{'feature':<20} | {'r':>7} | {'chiều':<12} | {'độ mạnh':<6}")
-        print("-" * 55)
-        for _, r in out.iterrows():
-            print(f"{r['feature']:<20} | {r['r']:>+7.3f} | {r['chiều']:<12} | {r['độ mạnh']:<6}")
+        # print(f"{'feature':<20} | {'r':>7} | {'chiều':<12} | {'độ mạnh':<6}")
+        # print("-" * 55)
+        # for _, r in out.iterrows():
+        #     print(f"{r['feature']:<20} | {r['r']:>+7.3f} | {r['chiều']:<12} | {r['độ mạnh']:<6}")
         return out
 
     # ===== NEW: Bước chọn feature & degree theo RAM (tuỳ chọn) =====
@@ -591,7 +591,7 @@ class AutoPolynomialRegression:
         }])
 
         print("\n=== Đánh giá mô hình cuối (train/test) ===")
-        print(report.round(4))
+        # print(report.round(4))
         self.metrics_ = report
         return report
 
