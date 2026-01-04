@@ -1,0 +1,27 @@
+[
+    {
+        "Mã phim": "MOV0001",
+        "Thời lượng": 180,
+        "Tên phim": "Avengers: Endgame"
+    },
+    {
+        "Mã phim": "MOV0002",
+        "Thời lượng": 150,
+        "Tên phim": "Inception"
+    },
+    {
+        "Mã phim": "MOV0003",
+        "Thời lượng": 210,
+        "Tên phim": "Fast and Furious"
+    },
+    {
+        "Mã phim": "MOV0004",
+        "Thời lượng": 150,
+        "Tên phim": "No pain no gain"
+    },
+    {
+        "Mã phim": "MOV0005",
+        "Thời lượng": 120,
+        "Tên phim": "The Matrix"
+    }
+]
