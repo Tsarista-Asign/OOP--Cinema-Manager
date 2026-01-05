@@ -1,0 +1,7 @@
+.vscode
+__pycache__/
+
+Docs/
+Data/
+Models/
+Reports/
